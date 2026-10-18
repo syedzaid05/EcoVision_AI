@@ -10,6 +10,7 @@ Classes: **Cardboard / Glass / Metal / Paper / Plastic / Trash**.
 
 ## Table of contents
 
+- [Deployment](#deployment)
 - [Overview](#overview)
 - [Pipeline](#pipeline)
 - [Results](#results)
@@ -456,3 +457,19 @@ data/                TrashNet dataset (gitignored)
 - [MobileNetV2](https://arxiv.org/abs/1801.04381) (Sandler et al., 2018) via
   `keras.applications`.
 - Built with TensorFlow / Keras and Streamlit.
+
+---
+
+## Deployment
+
+The app deploys free on [Streamlit Community Cloud](https://share.streamlit.io) and
+auto-redeploys on every push to `main`:
+
+1. Sign in at share.streamlit.io with GitHub → **Create app**
+2. Select this repo, branch `main`, main file **`app.py`** (Python 3.12)
+3. **Deploy** — the trained model (`models/waste_mobilenetv2.keras`) is committed to the
+   repo, so the cloud app loads it directly with **no secrets or extra setup required**
+4. First visit after ~12h idle takes 1–2 min (TensorFlow cold start)
+
+App theme/config lives in `.streamlit/config.toml`; secrets (if ever needed) go in the
+gitignored `.streamlit/secrets.toml`.
